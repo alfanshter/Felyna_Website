@@ -10,9 +10,7 @@ class Home extends BaseController
             'title' => 'Home | Felyna'
         ];
 
-        echo view('layout/header', $data);
-        echo view('pages/index');
-        echo view('layout/footer');
+        return view('pages/index', $data);
     }
 
     public function about()
@@ -21,10 +19,7 @@ class Home extends BaseController
         $data = [
             'title' => 'About | Felyna'
         ];
-
-        echo view('layout/header', $data);
-        echo view('pages/about');
-        echo view('layout/footer');
+        return view('pages/about', $data);
     }
 
     public function programming()
@@ -33,20 +28,34 @@ class Home extends BaseController
             'title' => 'Programming | Felyna'
         ];
 
-        echo view('layout/header', $data);
-        echo view('pages/programming');
-        echo view('layout/footer');
+        return view('pages/programming', $data);
     }
 
     public function website()
     {
         $data = [
-            'title' => 'Website | Felyna'
+            'title' => 'Webiste | Felyna',
+            'produk' => [
+                [
+                    'nama' => 'Toko Online private',
+                    'harga' => 'Rp. 2500.000',
+                    'database' => 'Firebase'
+                ],
+                [
+                    'nama' => 'Toko Online public',
+                    'harga' => 'Rp. 5000.000',
+                    'database' => 'Firebase'
+                ],
+                [
+                    'nama' => 'Toko Online public Speisal',
+                    'harga' => 'Rp. 15.000.000',
+                    'database' => 'MongoDB'
+                ]
+            ]
         ];
 
-        echo view('layout/header', $data);
-        echo view('pages/website');
-        echo view('layout/footer');
+
+        return view('pages/website', $data);
     }
 
     public function frontend()
@@ -55,19 +64,30 @@ class Home extends BaseController
             'title' => 'Frontend | Felyna'
         ];
 
-        echo view('layout/header', $data);
-        echo view('pages/frontend');
-        echo view('layout/footer');
+        return view('pages/frontend', $data);
     }
 
     public function backend()
     {
         $data = [
-            'title' => 'Backend | Felyna'
+            'title' => 'Backend | Felyna',
+            'produk' => [
+                'nama' => 'Toko Online private',
+                'harga' => 'Rp. 2500.000',
+                'database' => 'Firebase'
+            ],
+            [
+                'nama' => 'Toko Online public',
+                'harga' => 'Rp. 5000.000',
+                'database' => 'Firebase'
+            ],
+            [
+                'nama' => 'Toko Online public Speisal',
+                'harga' => 'Rp. 15.000.000',
+                'database' => 'MongoDB'
+            ]
         ];
 
-        echo view('layout/header', $data);
-        echo view('pages/backend');
-        echo view('layout/footer');
+        return view('pages/backend', $data);
     }
 }

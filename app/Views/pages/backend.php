@@ -1,3 +1,6 @@
+    <?= $this->extend('layout/template'); ?>
+    <?= $this->section('content'); ?>
+
     <!-- main section -->
     <section class="hero py-3">
         <div class="container">
@@ -35,3 +38,5 @@
 
                     </div>
                 </div>
+
+                <?= $this->endSection(); ?>
