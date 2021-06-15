@@ -46,14 +46,24 @@ class Home extends BaseController
     public function website()
     {
 
-        $produk = $this->produkModel->findAll();
+        // $produk = $this->produkModel->findAll();
 
         $data = [
             'title' => 'Webiste | Felyna',
-            'produk' => $produk
+            'produk' => $this->produkModel->getProduk()
         ];
 
         return view('pages/website', $data);
+    }
+
+    public function detail($slug)
+    {
+        $data = [
+            'title' => 'Detail | Felyna',
+            'produk' => $this->produkModel->getProduk($slug)
+        ];
+
+        return view('pages/detail_website', $data);
     }
 
     public function frontend()

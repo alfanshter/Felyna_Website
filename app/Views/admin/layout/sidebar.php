@@ -5,7 +5,7 @@
     </a>
     <hr class="sidebar-divider my-0">
     <li class="nav-item active">
-        <a class="nav-link" href="<?= base_url('dashboard'); ?>">
+        <a class="nav-link" href="<?= base_url('admin'); ?>">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -15,7 +15,7 @@
     </div>
 
     <li class="nav-item">
-        <a class="nav-link" href="<?= base_url('insert'); ?>">
+        <a class="nav-link" href="<?= base_url('admin/insert'); ?>">
             <i class="fab fa-fw fa-wpforms"></i>
             <span>Insert Produk</span>
         </a>

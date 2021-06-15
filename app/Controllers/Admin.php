@@ -2,14 +2,37 @@
 
 namespace App\Controllers;
 
+use App\Models\ProdukModel;
+
+
 class Admin extends BaseController
 {
+
+    //biar dapat dipanggil di semua function
+    protected $produkModel;
+
+    public function __construct()
+    {
+        $this->produkModel = new ProdukModel();
+    }
+
+
     public function index()
     {
-        echo view('admin/layout/header');
-        echo view('admin/layout/sidebar');
-        echo view('admin/layout/topbar');
-        echo view('admin/index');
-        echo view('admin/layout/footer');
+        $data = [
+            'title' => 'Admin | Felyna'
+        ];
+
+        return view('admin/index');
+    }
+
+    public function insert()
+    {
+        $data = [
+            'title' => 'Admin | Felyna',
+            'produk' => $this->produkModel->getProduk()
+        ];
+
+        return view('admin/insert', $data);
     }
 }

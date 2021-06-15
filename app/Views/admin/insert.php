@@ -1,3 +1,7 @@
+<?= $this->extend('admin/layout/template-admin'); ?>
+
+<?= $this->section('content'); ?>
+
 <div class="container-fluid" id="container-wrapper">
     <div class="row">
         <div class="col-lg-12">
@@ -11,13 +15,21 @@
                 <div class="table-responsive p-3">
                     <table class="table align-items-center table-flush table-hover" id="dataTableHover">
                         <thead class="thead-light">
+                            <th>No</th>
                             <th>Nama Website</th>
-                            <th>Harga Pertahun</th>
-                            <th>Jenis</th>
-                            <th>Database</th>
-                            </tr>
+                            <th>Harga</th>
+                            <th>Detail</th>
                         </thead>
                         <tbody>
+                            <?= $i = 1; ?>
+                            <?php foreach ($produk as $produks) : ?>
+                                <tr>
+                                    <td><?= $i++; ?></td>
+                                    <td><?= $produks['nama']; ?></td>
+                                    <td><?= $produks['harga']; ?></td>
+                                    <td><a href="#" class="btn btn-primary">Detail</a></td>
+                                </tr>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
@@ -25,3 +37,4 @@
         </div>
     </div>
 </div>
+<?= $this->endSection(); ?>

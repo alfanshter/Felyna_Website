@@ -1,3 +1,6 @@
+<?php $this->extend('admin/layout/template-admin'); ?>
+
+<?php $this->section('content'); ?>
 <!-- Container Fluid-->
 <div class="container-fluid" id="container-wrapper">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -90,3 +93,5 @@
 
 </div>
 <!---Container Fluid-->
+
+<?= $this->endSection(); ?>

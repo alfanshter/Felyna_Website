@@ -25,7 +25,7 @@
                                     <th scope="col">No</th>
                                     <th scope="col">Nama</th>
                                     <th scope="col">Harga</th>
-                                    <th scope="col">Foto</th>
+                                    <th scope="col">Detail</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -35,7 +35,8 @@
                                         <th scope="row"><?= $i++; ?></th>
                                         <td><?= $a['nama']; ?></td>
                                         <td><?= $a['harga']; ?></td>
-                                        <td> <img class="gambar_web" alt="" src="<?= base_url($a['foto']); ?>" /></td>
+                                        <td><a href="/home/detail/<?= $a['slug']; ?>" class="btn btn-primary">Detail</a></td>
+                                        <!-- <td> <img class="gambar_web" alt="" src="<?= base_url($a['foto']); ?>" /></td> -->
                                     </tr>
                                 <?php endforeach; ?>
 
