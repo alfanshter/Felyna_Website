@@ -2,8 +2,20 @@
 
 namespace App\Controllers;
 
+use App\Models\ProdukModel;
+
+
 class Home extends BaseController
 {
+    //biar dapat dipanggil di semua function
+    protected $produkModel;
+
+    public function __construct()
+    {
+        $this->produkModel = new ProdukModel();
+    }
+
+
     public function index()
     {
         $data = [
@@ -33,27 +45,13 @@ class Home extends BaseController
 
     public function website()
     {
+
+        $produk = $this->produkModel->findAll();
+
         $data = [
             'title' => 'Webiste | Felyna',
-            'produk' => [
-                [
-                    'nama' => 'Toko Online private',
-                    'harga' => 'Rp. 2500.000',
-                    'database' => 'Firebase'
-                ],
-                [
-                    'nama' => 'Toko Online public',
-                    'harga' => 'Rp. 5000.000',
-                    'database' => 'Firebase'
-                ],
-                [
-                    'nama' => 'Toko Online public Speisal',
-                    'harga' => 'Rp. 15.000.000',
-                    'database' => 'MongoDB'
-                ]
-            ]
+            'produk' => $produk
         ];
-
 
         return view('pages/website', $data);
     }
