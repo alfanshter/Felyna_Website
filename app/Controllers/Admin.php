@@ -49,6 +49,55 @@ class Admin extends BaseController
         return view('admin/detail', $data);
     }
 
+    public function edit($slug)
+    {
+        $data = [
+            'title' => 'Update | Felyna',
+            'validation' => \Config\Services::validation(),
+            'produk' => $this->produkModel->getProduk($slug)
+        ];
+
+        return view('admin/edit', $data);
+    }
+
+    public function update($id)
+    {
+
+        //cek judul terlebih dahulu
+        $produklama = $this->produkModel->getProduk($this->request->getVar('slug'));
+        if ($produklama['nama'] == $this->request->getVar('nama')) {
+            $rule_nama = 'required';
+        } else {
+            $rule_nama = 'required|is_unique[produk.nama]';
+        }
+
+
+        if (!$this->validate([
+            'nama' => [
+                'rules' => $rule_nama,
+                'errors' => [
+                    'required' => '{field} harus diisi.',
+                    'is_unique' => '{field} tidak boleh sama'
+                ]
+            ]
+        ])) {
+            $validation = \Config\Services::validation();
+            return redirect()->to('admin/edit/' . $this->request->getVar('slug'))->withInput()->with('validation', $validation);
+        }
+
+        $slug = url_title($this->request->getVar('nama'), '-', true);
+        $this->produkModel->save([
+            'id' => $id,
+            'slug' => $slug,
+            'nama' => $this->request->getVar('nama'),
+            'harga' => $this->request->getVar('harga')
+        ]);
+
+        session()->setFlashdata('pesan', 'Data berhasil di ubah');
+
+        return redirect()->to('admin/insert/');
+    }
+
     public function create()
     {
         $data = [
@@ -61,8 +110,11 @@ class Admin extends BaseController
 
     public function delete($id)
     {
+        //memanggil fungsi delete pada model dengan parameter id
         $this->produkModel->delete($id);
+        //akan mengambil data session
         session()->setFlashdata('pesan', 'Data berhasil di hapus');
+        //setelah di delete akan meredirect ke url admin/insert
         return redirect()->to('admin/insert');
     }
 

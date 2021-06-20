@@ -32,7 +32,11 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
+
+$routes->get('/admin/edit/(:segment)', 'Admin::edit/$1');
+// sudah di set post akan tetapi pada saat mengisi angka akan menjadi delete. supaya aman dari hacker
 $routes->delete('/admin/insert/(:num)', 'Admin::delete/$1');
+// :any hanya berfungsi untuk fungsi detail pada controller HOME
 $routes->get('/home/detail/(:any)', 'Home::detail/$1');
 
 
