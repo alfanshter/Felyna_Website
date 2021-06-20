@@ -12,13 +12,16 @@
                 <div class="row mb-3">
                     <label for="nama" class="col-sm-2 col-form-label">Nama</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="nama" name="nama">
+                        <input type="text" class="form-control <?= ($validation->hasError('nama')) ? 'is-invalid' : ''; ?>" id="nama" name="nama" value="<?= old('nama'); ?>">
+                        <div class="invalid-feedback">
+                            <?= $validation->getError('nama'); ?>
+                        </div>
                     </div>
                 </div>
                 <div class="row mb-3">
                     <label for="harga" class="col-sm-2 col-form-label">Harga</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="harga" name="harga">
+                        <input type="text" class="form-control" id="harga" name="harga" value="<?= old('harga'); ?>">
                     </div>
                 </div>
                 <center>

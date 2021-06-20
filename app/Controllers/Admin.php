@@ -51,13 +51,30 @@ class Admin extends BaseController
 
     public function create()
     {
-        $data = ['title' => 'Create | Felyna'];
+        $data = [
+            'title' => 'Create | Felyna',
+            'validation' => \Config\Services::validation()
+        ];
 
         return view('admin/create', $data);
     }
 
     public function save()
     {
+
+        if (!$this->validate([
+            'nama' => [
+                'rules' => 'required|is_unique[produk.nama]',
+                'errors' => [
+                    'required' => '{field} harus diisi.',
+                    'is_unique' => '{field} tidak boleh sama'
+                ]
+            ]
+        ])) {
+            $validation = \Config\Services::validation();
+            return redirect()->to('admin/create')->withInput()->with('validation', $validation);
+        }
+
         $slug = url_title($this->request->getVar('nama'), '-', true);
         $this->produkModel->save([
             'slug' => $slug,
