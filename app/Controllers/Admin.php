@@ -59,6 +59,13 @@ class Admin extends BaseController
         return view('admin/create', $data);
     }
 
+    public function delete($id)
+    {
+        $this->produkModel->delete($id);
+        session()->setFlashdata('pesan', 'Data berhasil di hapus');
+        return redirect()->to('admin/insert');
+    }
+
     public function save()
     {
 

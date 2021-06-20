@@ -33,7 +33,13 @@
                                     <td><?= $i++; ?></td>
                                     <td><?= $produks['nama']; ?></td>
                                     <td><?= $produks['harga']; ?></td>
-                                    <td><a href="/admin/detail/<?= $produks['slug']; ?>" class="btn btn-primary">Detail</a></td>
+                                    <td><a href="/admin/detail/<?= $produks['slug']; ?>" class="btn btn-primary">Detail</a>
+                                        <form action="/admin/insert/<?= $produks['id']; ?>" method="POST" class="d-inline">
+                                            <?= csrf_field(); ?>
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <button type="submit" class="btn btn-danger" onclick="return confirm('apakah anda yakin ?');">Delete</button>
+                                        </form>
+                                    </td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
