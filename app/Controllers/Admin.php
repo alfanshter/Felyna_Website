@@ -110,6 +110,11 @@ class Admin extends BaseController
 
     public function delete($id)
     {
+        //ambil data foto
+        $filefoto = $this->produkModel->find($id);
+        //hapus foto dari lokasi
+        unlink('assets/img/' . $filefoto['foto']);
+
         //memanggil fungsi delete pada model dengan parameter id
         $this->produkModel->delete($id);
         //akan mengambil data session
