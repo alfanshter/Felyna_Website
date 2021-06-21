@@ -2,10 +2,12 @@
 
 namespace Config;
 
+use App\Filters\UsersAuthFilter;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Filters\CSRF;
 use CodeIgniter\Filters\DebugToolbar;
 use CodeIgniter\Filters\Honeypot;
+use CodeIgniter\Filters\FilterInterface;
 
 class Filters extends BaseConfig
 {
@@ -19,6 +21,7 @@ class Filters extends BaseConfig
 		'csrf'     => CSRF::class,
 		'toolbar'  => DebugToolbar::class,
 		'honeypot' => Honeypot::class,
+		'auth'     => UsersAuthFilter::class,
 	];
 
 	/**

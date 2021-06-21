@@ -33,6 +33,11 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 
+$routes->get('/admin', 'Admin::index', ['filter' => 'auth']);
+
+$routes->get('/admin/insert', 'Admin::insert', ['filter' => 'auth']);
+
+
 $routes->get('/admin/edit/(:segment)', 'Admin::edit/$1');
 // sudah di set post akan tetapi pada saat mengisi angka akan menjadi delete. supaya aman dari hacker
 $routes->delete('/admin/insert/(:num)', 'Admin::delete/$1');
