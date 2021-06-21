@@ -128,17 +128,37 @@ class Admin extends BaseController
                     'required' => '{field} harus diisi.',
                     'is_unique' => '{field} tidak boleh sama'
                 ]
+            ],
+            'foto' => [
+                'rules' => 'uploaded[foto]|max_size[foto,1024]|is_image[foto]|mime_in[foto,image/jpg,image/jpeg,image/png]',
+                'errors' => [
+                    'uploaded' => 'Pilih gambar foto terlebih dahulu',
+                    'max_size' => 'Ukuran gambar melebihi batas',
+                    'is_image' => 'File hanya berisi gambar',
+                    'mime_in' => 'hanya support untuk jpg,jpeg,png'
+                ]
             ]
         ])) {
-            $validation = \Config\Services::validation();
-            return redirect()->to('admin/create')->withInput()->with('validation', $validation);
+            // $validation = \Config\Services::validation();
+            // return redirect()->to('admin/create')->withInput()->with('validation', $validation);
+            return redirect()->to('admin/create')->withInput();
         }
+
+        //ambil file gambar
+        $filefoto = $this->request->getFile('foto');
+        //generate nama foto random
+        $namafoto = $filefoto->getRandomName();
+
+        //pindahkan file ke folder public img
+        $filefoto->move('assets/img', $namafoto);
+
 
         $slug = url_title($this->request->getVar('nama'), '-', true);
         $this->produkModel->save([
             'slug' => $slug,
             'nama' => $this->request->getVar('nama'),
-            'harga' => $this->request->getVar('harga')
+            'harga' => $this->request->getVar('harga'),
+            'foto' => $namafoto
         ]);
 
         session()->setFlashdata('pesan', 'Data berhasil di tambahkan');
