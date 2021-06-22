@@ -35,6 +35,21 @@
 
                     </div>
                 </div>
+
+                <div class="row mb-3">
+                    <label for="foto" class="col-sm-2 col-form-label">Jenis Software</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="jurusan">
+                            <option value="TI">Android</option>
+                            <option value="SI">IOS</option>
+                            <option value="TK">Website</option>
+                            <option value="MI">Multiplatform</option>
+                        </select>
+                    </div>
+
+                </div>
+
+
                 <center>
                     <button type="submit" class="btn btn-primary">tambah</button>
 

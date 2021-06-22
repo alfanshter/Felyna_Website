@@ -29,6 +29,7 @@ class Admin extends BaseController
         return view('admin/index');
     }
 
+
     public function login()
     {
         $data = [
@@ -122,12 +123,28 @@ class Admin extends BaseController
 
     public function insert()
     {
-        $data = [
-            'title' => 'Admin | Felyna',
-            'produk' => $this->produkModel->getProduk()
-        ];
+        return view('admin/insert');
+    }
 
-        return view('admin/insert', $data);
+    public function ambildata()
+    {
+
+
+        if ($this->request->isAJAX()) {
+
+            $produk = $this->produkModel;
+            $data = [
+                'tampildata' => $produk->findAll()
+            ];
+
+            $msg = [
+                'data' => view('admin/dataproduk', $data)
+            ];
+
+            echo json_encode($msg);
+        } else {
+            exit('maaf tidak dapat di proses');
+        }
     }
 
     public function detail($slug)
