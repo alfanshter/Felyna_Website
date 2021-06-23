@@ -41,6 +41,35 @@
 
                     </div>
                 </div>
+
+                <div class="row mb-3">
+                    <label for="foto" class="col-sm-2 col-form-label">Jenis database</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="database">
+                            <option value="Firebase">Firebase</option>
+                            <option value="MongoDB">MongoDB</option>
+                            <option value="Mysql">Mysql</option>
+                            <option value="Multiplatform">Multiplatform</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="row mb-3">
+                    <label for="foto" class="col-sm-2 col-form-label">Jenis Software</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="jenis_software">
+                            <option value="Android">Android</option>
+                            <option value="IOS">IOS</option>
+                            <option value="Website">Website</option>
+                            <option value="Multiplatform">Multiplatform</option>
+                        </select>
+                    </div>
+
+                </div>
+
+
+
                 <center>
                     <button type="submit" class="btn btn-primary">Edit Data</button>
 

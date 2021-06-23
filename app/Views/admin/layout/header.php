@@ -11,10 +11,12 @@
 
     <script src="<?php echo base_url('assets/vendor/jquery/jquery.min.js'); ?>"></script>
     <link rel="stylesheet" href="<?php echo base_url('assets/css/ruang-admin.min.css'); ?>" />
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/style_admin.css'); ?>" />
     <link rel="stylesheet" href="<?php echo base_url('assets/vendor/bootstrap/css/bootstrap.min.css'); ?>" />
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/vendor/bootstrap/css/bootstrap.min.css'); ?>" />
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/vendor/fontawesome-free/css/all.min.css'); ?>" />
     <script src="<?= base_url('assets/'); ?>vendor/jquery/jquery.min.js"></script>
+
 </head>
 
 <body id="page-top">

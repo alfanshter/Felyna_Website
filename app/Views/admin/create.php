@@ -21,7 +21,11 @@
                 <div class="row mb-3">
                     <label for="harga" class="col-sm-2 col-form-label">Harga</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="harga" name="harga" value="<?= old('harga'); ?>">
+                        <input type="text" class="form-control  <?= ($validation->hasError('foto')) ? 'is-invalid' : ''; ?>" id="harga" name="harga" value="<?= old('harga'); ?>">
+                        <div class="invalid-feedback">
+                            <?= $validation->getError('harga'); ?>
+                        </div>
+
                     </div>
                 </div>
 
@@ -39,15 +43,29 @@
                 <div class="row mb-3">
                     <label for="foto" class="col-sm-2 col-form-label">Jenis Software</label>
                     <div class="col-sm-10">
-                        <select class="form-control" name="jurusan">
-                            <option value="TI">Android</option>
-                            <option value="SI">IOS</option>
-                            <option value="TK">Website</option>
-                            <option value="MI">Multiplatform</option>
+                        <select class="form-control" name="jenis_software">
+                            <option value="Android">Android</option>
+                            <option value="IOS">IOS</option>
+                            <option value="Website">Website</option>
+                            <option value="Multiplatform">Multiplatform</option>
                         </select>
                     </div>
 
                 </div>
+
+                <div class="row mb-3">
+                    <label for="foto" class="col-sm-2 col-form-label">Jenis database</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="database">
+                            <option value="Firebase">Firebase</option>
+                            <option value="MongoDB">MongoDB</option>
+                            <option value="Mysql">Mysql</option>
+                            <option value="Multiplatform">Multiplatform</option>
+                        </select>
+                    </div>
+
+                </div>
+
 
 
                 <center>
@@ -58,6 +76,4 @@
         </div>
     </div>
 </div>
-
-
 <?= $this->endSection(); ?>

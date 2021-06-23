@@ -16,6 +16,7 @@
                         <?php endif; ?>
 
                         <a href="<?= base_url('admin/create') ?>" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i>Add Data</a>
+
                     </div>
                 </div>
                 <div class="table-responsive p-3 viewdata">
@@ -24,7 +25,10 @@
             </div>
         </div>
     </div>
+
 </div>
+<div class="viewmodal" style="display: none;"></div>
+
 
 <script>
     function dataproduk() {
@@ -42,6 +46,22 @@
 
     $(document).ready(function() {
         dataproduk();
+
+        $('.tomboltambah').click(function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: "<?= site_url('admin/formtambah'); ?>",
+                dataType: "json",
+                success: function(response) {
+                    $('.viewmodal').html(response.data).show();
+
+                    $('#modaltambah').modal('show');
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+                }
+            });
+        });
     });
 </script>
 <?= $this->endSection(); ?>

@@ -10,7 +10,7 @@ class ProdukModel extends Model
     protected $useTimestamps = true;
     protected $dateFormat = 'datetime';
     protected $createdField = 'created_at';
-    protected $allowedFields = ['nama', 'harga', 'foto', 'slug'];
+    protected $allowedFields = ['nama', 'harga', 'foto', 'slug', 'penyimpanan', 'jenis_software'];
 
 
     public function getProduk($slug = false)

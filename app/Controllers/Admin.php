@@ -15,6 +15,7 @@ class Admin extends BaseController
 
     public function __construct()
     {
+
         $this->produkModel = new ProdukModel();
         $this->userModel = new UserModel();
     }
@@ -28,6 +29,8 @@ class Admin extends BaseController
 
         return view('admin/index');
     }
+
+
 
 
     public function login()
@@ -147,6 +150,20 @@ class Admin extends BaseController
         }
     }
 
+    public function formtambah()
+    {
+        if ($this->request->isAJAX()) {
+
+            $msg = [
+                'data' => view('admin/modaltambah')
+            ];
+
+            echo json_encode($msg);
+        } else {
+            exit('maaf tidak dapat di proses');
+        }
+    }
+
     public function detail($slug)
     {
         $data = [
@@ -205,7 +222,6 @@ class Admin extends BaseController
         }
 
         $filefoto = $this->request->getFile('foto');
-        dd($filefoto);
         // cek gambar, apakah tetap gambar lama
         if ($filefoto->getError() == 4) {
             $namafoto = $this->request->getFile('fotolama');
@@ -224,7 +240,10 @@ class Admin extends BaseController
             'slug' => $slug,
             'nama' => $this->request->getVar('nama'),
             'harga' => $this->request->getVar('harga'),
-            'foto' => $namafoto
+            'foto' => $namafoto,
+            'penyimpanan' => $this->request->getVar('database'),
+            'jenis_software' => $this->request->getVar('jenis_software')
+
         ]);
 
         session()->setFlashdata('pesan', 'Data berhasil di ubah');
@@ -276,6 +295,14 @@ class Admin extends BaseController
                     'is_image' => 'File hanya berisi gambar',
                     'mime_in' => 'hanya support untuk jpg,jpeg,png'
                 ]
+            ],
+            'harga' => [
+                'rules' => 'uploaded[foto]|max_size[foto,1024]|is_image[foto]|mime_in[foto,image/jpg,image/jpeg,image/png]',
+                'rules' => 'required|is_unique[produk.nama]',
+                'errors' => [
+                    'required' => '{field} harus diisi.',
+                    'is_unique' => '{field} tidak boleh sama'
+                ]
             ]
         ])) {
             // $validation = \Config\Services::validation();
@@ -297,7 +324,9 @@ class Admin extends BaseController
             'slug' => $slug,
             'nama' => $this->request->getVar('nama'),
             'harga' => $this->request->getVar('harga'),
-            'foto' => $namafoto
+            'foto' => $namafoto,
+            'penyimpanan' => $this->request->getVar('database'),
+            'jenis_software' => $this->request->getVar('jenis_software')
         ]);
 
         session()->setFlashdata('pesan', 'Data berhasil di tambahkan');
