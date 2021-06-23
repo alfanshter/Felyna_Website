@@ -41,6 +41,9 @@ $routes->get('/admin/insert', 'Admin::insert', ['filter' => 'auth']);
 $routes->get('/admin/edit/(:segment)', 'Admin::edit/$1');
 // sudah di set post akan tetapi pada saat mengisi angka akan menjadi delete. supaya aman dari hacker
 $routes->delete('/admin/insert/(:num)', 'Admin::delete/$1');
+
+// sudah di set post akan tetapi pada saat mengisi angka akan menjadi delete. supaya aman dari hacker
+$routes->delete('/home/keranjang/(:num)', 'Home::hapuskeranjang/$1');
 // :any hanya berfungsi untuk fungsi detail pada controller HOME
 $routes->get('/home/detail/(:any)', 'Home::detail/$1');
 

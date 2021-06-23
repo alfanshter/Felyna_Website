@@ -23,11 +23,18 @@ class Admin extends BaseController
 
     public function index()
     {
+
+        $session = session()->get('role');
+
         $data = [
             'title' => 'Admin | Felyna'
         ];
 
-        return view('admin/index');
+        if ($session == 1) {
+            return view('admin/index');
+        } else {
+            return view('admin/error');
+        }
     }
 
 
@@ -55,9 +62,15 @@ class Admin extends BaseController
             if (password_verify($password, $dataUser->password)) {
                 session()->set([
                     'username' => $dataUser->username,
-                    'logged_in' => TRUE
+                    'logged_in' => TRUE,
+                    'role' => $dataUser->role
                 ]);
-                return redirect()->to(base_url('admin'));
+
+                if ($dataUser->role == 1) {
+                    return redirect()->to(base_url('admin'));
+                } else {
+                    return redirect()->to(base_url('home'));
+                }
             } else {
                 session()->setFlashdata('error', 'Username & Password Salah');
                 return redirect()->back();
@@ -126,12 +139,21 @@ class Admin extends BaseController
 
     public function insert()
     {
-        return view('admin/insert');
+        $session = session()->get('role');
+
+        $data = [
+            'title' => 'Admin | Felyna'
+        ];
+
+        if ($session == 1) {
+            return view('admin/insert');
+        } else {
+            return view('admin/error');
+        }
     }
 
     public function ambildata()
     {
-
 
         if ($this->request->isAJAX()) {
 

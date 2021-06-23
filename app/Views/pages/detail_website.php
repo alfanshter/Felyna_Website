@@ -1,3 +1,7 @@
+<?php
+
+use PhpParser\Node\Stmt\Echo_;
+?>
 <?= $this->extend('layout/template'); ?>
 <?= $this->section('content'); ?>
 
@@ -24,20 +28,36 @@
                 </div>
 
                 <div class="p-content py-3">
-                    <table class="table table-success table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">Nama</th>
-                                <th scope="col">Harga</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><?= $produk['nama']; ?></td>
-                                <td><?= $produk['harga']; ?></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <form action="<?php echo base_url('home/addcart'); ?>" method="POST">
+                        <?= csrf_field(); ?>
+                        <input type="hidden" name="slug" value="<?= $produk['slug']; ?>">
+                        <input type="hidden" name="nama_barang" value="<?= $produk['nama']; ?>">
+                        <input type="hidden" name="harga_barang" value="<?= $produk['harga']; ?>">
+                        <input type="hidden" name="foto_barang" value="<?= $produk['foto']; ?>">
+                        <input type="hidden" name="nama_database" value="<?= $produk['penyimpanan']; ?>">
+                        <input type="hidden" name="jenis_software" value="<?= $produk['jenis_software']; ?>">
+
+                        <table class="table table-success table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nama</th>
+                                    <th scope="col">Harga</th>
+                                    <th scope="col">Database</th>
+                                    <th scope="col">Jenis Aplikasi</th>
+                                    <th scope="col">Beli</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td id="nama" name="nama"><?= $produk['nama']; ?></td>
+                                    <td>Rp.<?php echo number_format($produk['harga']); ?></td>
+                                    <td><?= $produk['penyimpanan']; ?></td>
+                                    <td><?= $produk['jenis_software']; ?></td>
+                                    <td><button type="submit" class="btn btn-primary">Beli</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
                 </div>
             </div>
 

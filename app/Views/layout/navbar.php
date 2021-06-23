@@ -26,6 +26,10 @@
                     <a class="nav-link" href="<?= base_url('home/about'); ?>">About</a>
                 </li>
 
+                <li class="nav-item"> <span style="font-family: sans-serif"></span>
+                    <a class="nav-link" href="<?= base_url('home/keranjang'); ?>">Keranjang</a>
+                </li>
+
             </ul>
             <form class="d-flex">
                 <input class="form-control border-0 rounded-pill" type="search" placeholder="Search" aria-label="Search">
